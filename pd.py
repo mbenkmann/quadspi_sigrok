@@ -294,7 +294,7 @@ class Decoder(srd.Decoder):
         cond_clk_edge = {0: self.options["clk_edge"][0]}
         cond_cs_rise = {5: 'r'}
         while True:
-            if self.prev_clk_period > 0 and (self.state != 0 or self.bitcount > 0):
+            if not self.has_channel(5) and self.prev_clk_period > 0 and (self.state != 0 or self.bitcount > 0):
                 cond_timeout = {'skip':2 * self.prev_clk_period}
                 _, io0, io1, io2, io3, _ = self.wait([cond_clk_edge, cond_cs_rise, cond_timeout])
                 if self.matched[2]:
