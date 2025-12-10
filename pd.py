@@ -282,6 +282,7 @@ class Decoder(srd.Decoder):
             self.data.append(self.byte)
             if len(self.data) > 255:
                 self.flush_data()
+                self.blockstart = self.samplenum
         
         self.byte = 0
 
