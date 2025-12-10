@@ -280,7 +280,7 @@ class Decoder(srd.Decoder):
             id += self.iolines - 1 - (self.iolines == 4)
             self.put(self.startsample, self.samplenum, self.out_ann, [id,[ f"{self.byte:02x}"]])
             self.data.append(self.byte)
-            if len(self.data) > 256:
+            if len(self.data) > 255:
                 self.flush_data()
         
         self.byte = 0
