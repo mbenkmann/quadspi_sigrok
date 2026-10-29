@@ -1,4 +1,5 @@
-== Sigrok/Pulseview Protocol decoder for SPI, Dual SPI and Quad SPI (QSPI) == 
+Sigrok/Pulseview Protocol decoder for SPI, Dual SPI and Quad SPI (QSPI)
+=======================================================================
 
 The QUAD SPI (Serial Peripheral Interface) protocol decoder supports synchronous
 SPI(-like) protocols with a clock line and 1, 2 or 4 bidirectional data lines.
