@@ -171,6 +171,7 @@ class Decoder(srd.Decoder):
         else:
             self.put_data(16, self.data)
         self.data.clear()
+        self.blockstart = self.samplenum
 
     def flush_and_restart(self):
         '''
@@ -282,8 +283,7 @@ class Decoder(srd.Decoder):
             self.data.append(self.byte)
             if len(self.data) > 255:
                 self.flush_data()
-                self.blockstart = self.samplenum
-        
+
         self.byte = 0
 
     def put_data(self, id, data):
