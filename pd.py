@@ -146,7 +146,7 @@ class Decoder(srd.Decoder):
         self.reset_state()
     
     def reset_state(self):
-        self.state = 0
+        self.state = 0 #0: instruction, 1: Unknown, 2: Address, 3: Dummy, 4: Data
         self.bitcount = 0
         self.byte = 0
         self.startsample = 0 # sample of 1st bit of current byte
@@ -203,7 +203,7 @@ class Decoder(srd.Decoder):
         elif self.iolines == 4: # QUAD
             self.byte = ((((((self.byte | io3) << 1) | io2) << 1) | io1) << 1) | io0
         else: # normal SPI            
-            self.byte |= io0 ^ io1  # XOR MOSI and MISO so we don't need to know which one is active
+            self.byte |= io1 if (self.state == 4 and self.expected == 2) else io0
         
         self.bitcount += self.iolines
 
